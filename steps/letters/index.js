@@ -10,6 +10,11 @@ class LettersSteps extends DefaultSteps {
 		this.page.hasLetterBySubject(subject);
 		this.page.openBySubject(subject);
 	}
+	
+	markReadUnread(subject) {
+		this.page.hasLetterBySubject(subject);
+		this.page.markReadUnread(subject);
+	}
 
 }
 

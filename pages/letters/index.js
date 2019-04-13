@@ -14,12 +14,14 @@ class LettersPage extends DefaultPage {
 				// subject = subject === '' ? '<Без темы>' : subject.replace('"', '\\"');
 
 				return `${this.locators.container} [data-qa-id="letter-item:subject:${subject}"]`;
-			}
+			},
+			letterReadStatus: (subject) => `${this.locators.letterBySubject(subject)} [data-qa-id="unread"]`,  
 		}
 	}
 
 	/**
-	 * Проверяет есть ли письмо с темой
+	 * Проверяет есть ли письмо
+	 *  с темой
 	 *
 	 * @param {string} subject
 	 * @param {boolean} reverse
@@ -42,6 +44,11 @@ class LettersPage extends DefaultPage {
 	openBySubject (subject) {
 		this.page.click(this.locators.letterBySubject(subject));
 	}
+
+	markReadUnread (subject) {
+		this.page.click(this.locators.letterReadStatus(subject));
+	}
+
 
 }
 

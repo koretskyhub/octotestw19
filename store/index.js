@@ -9,6 +9,17 @@ export default {
 		sizeL: 1440,
 		sizeL1: 1700,
 		sizeXL: 1800,
-		sizeXXL: 2560
+		sizeXXL: 2560,
 	}
-};
+}
+
+export const testUserCredentials = [
+	{
+		login: 'mailbox4test@inbox.ru',
+		password:  'mTLit9rwJu8VtYA',
+	},
+	{
+		login: 'mailbox4test2@inbox.ru',
+		password:  'BeN5B4wGdeNu7Sx',
+	}
+];

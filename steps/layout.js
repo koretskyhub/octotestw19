@@ -1,6 +1,6 @@
 import DefaultSteps from './default';
 import page from '../pages/layout';
-import dimensions from '../store'
+import { dimensions } from '../store'
 
 class LayoutSteps extends DefaultSteps {
 	constructor() {
