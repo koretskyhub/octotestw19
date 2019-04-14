@@ -6,13 +6,20 @@ class Layout extends DefaultPage {
 	}
 
 	get locators() {
-		const container = '[data-qa-id="application"]';
-		const sideBar = container + ' [data-qa-id="main"] [data-qa-id="sidebar"]';
-		const dropDown = sideBar + ' [data-qa-id="dropdown-settings"]';
-		const dropDownButton = dropDown + ' [data-qa-id="dropdown-button"]';
-		const dropDownList = dropDown + ' [data-qa-id="dropdown-list"]';
-		const layoutSwitch = dropDownList + ' [data-qa-id="layout-toggle"]';
-		const paneCheckbox = layoutSwitch + ' .b-checkbox';
+		// const container = '[data-qa-id="application"]';
+		// const sideBar = container + ' [data-qa-id="main"] [data-qa-id="sidebar"]';
+		// const dropDown = sideBar + ' [data-qa-id="dropdown-settings"]';
+		// const dropDownButton = dropDown + ' [data-qa-id="dropdown-button"]';
+		// const dropDownList = dropDown + ' [data-qa-id="dropdown-list"]';
+		// const layoutSwitch = dropDownList + ' [data-qa-id="layout-toggle"]';
+		// const paneCheckbox = layoutSwitch + ' .b-checkbox';
+		const container = '.application ';
+		const sideBar = 		container    + ' ' + '.sidebar';
+		const dropDown = 		sideBar 	 + ' ' + '.settings';
+		const dropDownButton = 	dropDown 	 + ' ' + '.button2__ico';
+		const dropDownList = 	dropDown 	 + ' ' + '.list';
+		const layoutSwitch = 	dropDownList + ' ' + ':nth-child(3)';
+		const paneCheckbox = 	layoutSwitch + ' ' + ' .b-checkbox';
 		return {
 			container,
 			sideBar,

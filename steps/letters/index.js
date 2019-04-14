@@ -6,14 +6,18 @@ class LettersSteps extends DefaultSteps {
 		super(page);
 	}
 
-	openBySubject(subject) {
-		this.page.hasLetterBySubject(subject);
-		this.page.openBySubject(subject);
+	openByLetterId(letterId) {
+		this.page.hasLetterByLetterId(letterId);
+		this.page.openByLetterId(letterId);
 	}
 	
-	markReadUnread(subject) {
-		this.page.hasLetterBySubject(subject);
-		this.page.markReadUnread(subject);
+	markReadUnread(letterId) {
+		this.page.hasLetterByLetterId(letterId);
+		this.page.markReadUnread(letterId);
+	}
+
+	isRead(letterId) {
+		return this.page.isRead(letterId);
 	}
 
 }

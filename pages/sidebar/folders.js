@@ -6,10 +6,42 @@ class FoldersPage extends DefaultPage {
 	}
 
 	get locators() {
-		const container = '[data-qa-id="sidebar"] [data-qa-id="folders"]';
+		const container = '.nav-folders' + ' ' + 'nav';
 		return {
 			container,
-			folderByName: (folderName) => container + ` [data-qa-id="folder-name:name:${folderName}"]`
+			folderByName: (folderName) => {
+				let folder;
+				switch (folderName) {
+					case 'Входящие':
+						folder = ':nth-child(1)';
+						break;
+					case 'Социальные сети':
+						folder = ':nth-child(2)';
+						break;
+					case 'Рассылки':
+						folder = ':nth-child(3)';
+						break;
+					case 'Отправленные':
+						folder = ':nth-child(4)';
+						break;
+					case 'Черновики':
+						folder = ':nth-child(5)';
+						break;
+					case 'Архив':
+						folder = ':nth-child(6)';
+						break;
+					case 'Спам':
+						folder = ':nth-child(7)';
+						break;
+					case 'Корзина':
+						folder = ':nth-child(8)';
+						break;
+				
+					default:
+						throw new Error('unknown folder');
+				}
+				return container + ' ' + folder;
+			}
 		}
 	}
 

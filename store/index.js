@@ -1,4 +1,4 @@
-export default {
+export const dimensions = {
 	widths: {
 		sizeXXS: 400,
 		sizeXXSMax: 760,
@@ -11,15 +11,9 @@ export default {
 		sizeXL: 1800,
 		sizeXXL: 2560,
 	}
-}
+};
 
-export const testUserCredentials = [
-	{
-		login: 'mailbox4test@inbox.ru',
-		password:  'mTLit9rwJu8VtYA',
-	},
-	{
-		login: 'mailbox4test2@inbox.ru',
-		password:  'BeN5B4wGdeNu7Sx',
-	}
-];
+export const testUserCredentials = {
+	loginVariableName: 'QA_LOGIN',
+	passwordVariableName: 'QA_PASSWORD',
+};

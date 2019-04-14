@@ -6,16 +6,16 @@ class LettersPage extends DefaultPage {
 	}
 
 	get locators () {
-		const container = '[data-qa-id="dataset-letters"]';
+		const container = '.dataset__items';
 
 		return {
 			container,
-			letterBySubject: (subject) => {
-				// subject = subject === '' ? '<Без темы>' : subject.replace('"', '\\"');
-
-				return `${this.locators.container} [data-qa-id="letter-item:subject:${subject}"]`;
-			},
-			letterReadStatus: (subject) => `${this.locators.letterBySubject(subject)} [data-qa-id="unread"]`,  
+			letterByLetterId: (letterId) => `${this.locators.container} [data-id="${letterId}"]`,
+			letterReadCheckbox: (letterId) => `${this.locators.letterByLetterId(letterId)}`
+											 + ' ' + '.llc__read-status'
+											 + ' ' + '.ll-rs',
+			letterReadStatus: (letterId) => `${this.locators.letterReadCheckbox(letterId)}` 
+											 + 'll-rs_is-active',
 		}
 	}
 
@@ -23,13 +23,13 @@ class LettersPage extends DefaultPage {
 	 * Проверяет есть ли письмо
 	 *  с темой
 	 *
-	 * @param {string} subject
+	 * @param {string} letterId
 	 * @param {boolean} reverse
 	 * @returns {boolean}
 	 */
-	hasLetterBySubject (subject, reverse = false) {
+	hasLetterByLetterId (letterId, reverse = false) {
 		try {
-			this.page.waitForVisible(this.locators.letterBySubject(subject), null, reverse);
+			this.page.waitForVisible(this.locators.letterByLetterId(letterId), null, reverse);
 
 			return true;
 		} catch (err) {
@@ -39,14 +39,18 @@ class LettersPage extends DefaultPage {
 
 	/**
 	 * Открыть письмо по теме
-	 * @param  {string} subject
+	 * @param  {string} letterId
 	 */
-	openBySubject (subject) {
-		this.page.click(this.locators.letterBySubject(subject));
+	openByLetterId (letterId) {
+		this.page.click(this.locators.letterByLetterId(letterId));
 	}
 
-	markReadUnread (subject) {
-		this.page.click(this.locators.letterReadStatus(subject));
+	markReadUnread (letterId) {
+		this.page.click(this.locators.letterReadCheckbox(letterId));
+	}
+
+	isRead (letterId) {
+		return $(this.locators.letterReadStatus(letterId)) === null;
 	}
 
 
