@@ -6,35 +6,35 @@ class FoldersPage extends DefaultPage {
 	}
 
 	get locators() {
-		const container = '.nav-folders' + ' ' + 'nav';
+		const container = '.nav-folders' + '>' + 'nav';
 		return {
 			container,
 			folderByName: (folderName) => {
 				let folder;
 				switch (folderName) {
 					case 'Входящие':
-						folder = ':nth-child(1)';
+						folder = ':nth-child(1).nav__item';
 						break;
 					case 'Социальные сети':
-						folder = ':nth-child(2)';
+						folder = ':nth-child(2).nav__item';
 						break;
 					case 'Рассылки':
-						folder = ':nth-child(3)';
+						folder = ':nth-child(3).nav__item';
 						break;
 					case 'Отправленные':
-						folder = ':nth-child(4)';
+						folder = ':nth-child(4).nav__item';
 						break;
 					case 'Черновики':
-						folder = ':nth-child(5)';
+						folder = ':nth-child(5).nav__item';
 						break;
 					case 'Архив':
-						folder = ':nth-child(6)';
+						folder = ':nth-child(6).nav__item';
 						break;
 					case 'Спам':
-						folder = ':nth-child(7)';
+						folder = ':nth-child(7).nav__item';
 						break;
 					case 'Корзина':
-						folder = ':nth-child(8)';
+						folder = ':nth-child(8).nav__item';
 						break;
 				
 					default:

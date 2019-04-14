@@ -9,6 +9,7 @@ class LettersSteps extends DefaultSteps {
 	openByLetterId(letterId) {
 		this.page.hasLetterByLetterId(letterId);
 		this.page.openByLetterId(letterId);
+		this.page.waitForUrl(`https://octavius.mail.ru/inbox/${letterId}/`);
 	}
 	
 	markReadUnread(letterId) {
