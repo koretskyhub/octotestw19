@@ -1,6 +1,6 @@
 import DefaultSteps from '../default';
 import page from '../../pages/letters';
-import folders from '../../steps/sidebar/folders'
+import folders from '../sidebar/folders'
 
 class LettersSteps extends DefaultSteps {
 	constructor() {
