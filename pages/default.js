@@ -21,7 +21,7 @@ export default class DefaultPage {
 		browser.url('/bundles/page.qa.html')
 	}
 
-	waitForUrl(value, timeout, revert) {
+	waitForUrl(value, timeout = 100000, revert) {
 		let url, actual;
 		try {
 			return browser.waitUntil(() => {
@@ -45,7 +45,6 @@ export default class DefaultPage {
 				if (revert) {
 					actual = !actual;
 				}
-	
 				return value && actual;
 			}, timeout, '');
 		} catch (error) {

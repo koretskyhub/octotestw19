@@ -6,7 +6,7 @@ class LettersPage extends DefaultPage {
 	}
 
 	get locators () {
-		const container = '.dataset__items';
+		const container = '.scrollable__container .dataset';
 
 		return {
 			container,
@@ -20,8 +20,7 @@ class LettersPage extends DefaultPage {
 	}
 
 	/**
-	 * Проверяет есть ли письмо
-	 *  с темой
+	 * Проверяет есть ли письмо по id
 	 *
 	 * @param {string} letterId
 	 * @param {boolean} reverse
@@ -38,19 +37,24 @@ class LettersPage extends DefaultPage {
 	}
 
 	/**
-	 * Открыть письмо по теме
+	 * Открыть письмо по id
 	 * @param  {string} letterId
 	 */
 	openByLetterId (letterId) {
-		this.page.click(this.locators.letterByLetterId(letterId));
+		$(this.locators.letterByLetterId(letterId)).click();
 	}
 
 	markReadUnread (letterId) {
+		this.page.waitForVisible(this.locators.letterReadCheckbox(letterId));
 		this.page.click(this.locators.letterReadCheckbox(letterId));
 	}
 
 	isRead (letterId) {
 		return $(this.locators.letterReadStatus(letterId)) === null;
+	}
+
+	get list(){
+		return $(this.locators.container).$$('a').map((el) => el.getAttribute('data-id'));
 	}
 
 

@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "chromedriver": "2.43.1",
+    "mailsender": "^1.1.2",
     "selenium-standalone": "6.15.3"
   }
 }
