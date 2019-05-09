@@ -17,9 +17,9 @@ class LetterPage extends DefaultPage {
      * @returns {string}
      */
     getLetterId() {
-        let letter_id_regex = /[0-9a-fA-F]+:([0-9a-fA-F]+):[0-9a-fA-F]+/;
-        let url = browser.getUrl();
-        let id = url.match(letter_id_regex)[1];
+        const letter_id_regex = /[0-9a-fA-F]+:([0-9a-fA-F]+):[0-9a-fA-F]+/;
+        const url = browser.getUrl();
+        const id = url.match(letter_id_regex)[1];
         return id;
     }
 

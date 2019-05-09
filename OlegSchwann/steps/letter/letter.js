@@ -7,9 +7,9 @@ class LetterSteps extends DefaultSteps {
     }
 
     getLetterId(subject) {
-        let id = this.page.getLetterId();
+        const id = this.page.getLetterId();
         if (!id) {
-            let message = `letter URL shod have unic id, found '${id}'.`;
+            const message = `letter URL shod have unic id, found '${id}'.`;
             throw new Error(message);
         }
         return id

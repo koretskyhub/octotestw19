@@ -7,12 +7,11 @@ class LettersSteps extends DefaultSteps {
 	}
 
 	clickAndCheckReadFlagChanged(subject) {
-		let state = this.page.hasFirstLetterReadFlag();
+		const state = this.page.hasFirstLetterReadFlag();
 		this.page.clickOnFlag();
-		let new_state = this.page.hasFirstLetterReadFlag();
+		const new_state = this.page.hasFirstLetterReadFlag();
 		if (state === new_state) {
-			let message = "Flag status has not changed.";
-			throw new Error(message);
+			throw new Error("Flag status has not changed.");
 		}
 	}
 }

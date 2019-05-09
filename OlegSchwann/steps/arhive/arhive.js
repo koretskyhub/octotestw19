@@ -11,7 +11,7 @@ class ArhiveSteps extends DefaultSteps {
      * @returns {boolean}
      */
     findLetterById(id) {
-        let exist = this.page.isLetterExist(id);
+        const exist = this.page.isLetterExist(id);
         if (!exist) {
             throw Error('required letter does not exist');
         }
