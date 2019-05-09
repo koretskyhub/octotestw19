@@ -16,6 +16,6 @@ describe('test id', () => {
 
         main.open('https://octavius.mail.ru/inbox/');
 
-        lettersSteps.checkReadFlagChanged();
+        lettersSteps.clickAndCheckReadFlagChanged();
     });
 });

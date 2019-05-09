@@ -6,7 +6,7 @@ class LettersSteps extends DefaultSteps {
 		super(page);
 	}
 
-	checkReadFlagChanged(subject) {
+	clickAndCheckReadFlagChanged(subject) {
 		let state = this.page.hasFirstLetterReadFlag();
 		this.page.clickOnFlag();
 		let new_state = this.page.hasFirstLetterReadFlag();
