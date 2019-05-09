@@ -16,7 +16,7 @@ describe('test id', () => {
 
         main.open('https://mail.ru');
 
-        main.login('olegschwann@inbox.ru', 'Z1iOaptPA1x');
+        main.login(login, password);
 
         main.open('https://octavius.mail.ru/inbox/');
 
