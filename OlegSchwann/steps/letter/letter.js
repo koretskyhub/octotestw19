@@ -1,22 +1,22 @@
 import DefaultSteps from '../default';
 import page from '../../pages/letter/letter';
+const assert = require('assert');
 
 class LetterSteps extends DefaultSteps {
     constructor() {
         super(page);
     }
 
-    getLetterId(subject) {
+    getLetterId() {
         const id = this.page.getLetterId();
-        if (!id) {
-            const message = `letter URL shod have unic id, found '${id}'.`;
-            throw new Error(message);
-        }
+
+        assert.ok(id, `Letter URL should have unique id, found '${id}'.`);
+
         return id
     }
 
-    sendToArhive(){
-        this.page.sendToArhive();
+    sendToArchive(){
+        this.page.sendToArchive();
     }
 }
 

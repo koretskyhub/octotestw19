@@ -3,16 +3,16 @@ import main from '../../steps/main';
 import inbox  from '../../steps/inbox/inbox';
 import letter from '../../steps/letter/letter';
 import arhive from '../../steps/arhive/arhive';
-
+const assert = require('assert');
 
 describe('test id', () => {
     const message = 'Send first letter to archive.';
     it(message, () => {
+
+        // TODO: вот это не должно быть в самом тесте. Это должно быть ДО выполнения теста.
         const login = process.env.LOGIN;
         const password = process.env.PASSWORD;
-        if (!login || !password) {
-            throw Error("Env must have LOGIN and PASSWORD variables.")
-        }
+        assert.ok(login && password, 'Env must have $LOGIN and $PASSWORD variables.');
 
         main.open('https://mail.ru');
 
@@ -24,7 +24,7 @@ describe('test id', () => {
 
         const id = letter.getLetterId();
 
-        letter.sendToArhive();
+        letter.sendToArchive();
 
         main.open('https://octavius.mail.ru/archive/');
 

@@ -1,5 +1,6 @@
 import DefaultSteps from '../default';
 import page from '../../pages/letters';
+const assert = require('assert');
 
 class LettersSteps extends DefaultSteps {
 	constructor() {
@@ -10,9 +11,8 @@ class LettersSteps extends DefaultSteps {
 		const state = this.page.hasFirstLetterReadFlag();
 		this.page.clickOnFlag();
 		const new_state = this.page.hasFirstLetterReadFlag();
-		if (state === new_state) {
-			throw new Error("Flag status has not changed.");
-		}
+
+		assert.notStrictEqual(state, new_state, 'Flag status has not changed.');
 	}
 }
 

@@ -7,13 +7,13 @@ class LetterPage extends DefaultPage {
 
     get locators() {
         return {
-            buttonToFolder: ".button2_folder",
-            buttonToArhive: ".nav_expanded > a:nth-child(6)"
+            buttonToFolder: '.button2_folder',
+            buttonToArhive: '.nav_expanded > a:nth-child(6)'
         }
     }
 
     /**
-     * Проверяет, существует ли письмо на странице https://octavius.mail.ru/archive/.
+     * Получает уникальный идентификатор письма.
      * @returns {string}
      */
     getLetterId() {
@@ -23,7 +23,7 @@ class LetterPage extends DefaultPage {
         return id;
     }
 
-    sendToArhive() {
+    sendToArchive() {
         this.page.waitForVisible(this.locators.buttonToFolder);
         this.page.click(this.locators.buttonToFolder);
         this.page.waitForVisible(this.locators.buttonToArhive);

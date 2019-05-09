@@ -7,8 +7,8 @@ class InboxPage extends DefaultPage {
 
     get locators () {
         return {
-            buttonToFolder: ".portal-menu-element:nth-child(6)",
-            buttonToArhive: ".nav_expanded > a:nth-child(6)",
+            buttonToFolder: '.portal-menu-element:nth-child(6)',
+            buttonToArhive: '.nav_expanded > a:nth-child(6)',
         }
     }
 

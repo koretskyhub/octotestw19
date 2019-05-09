@@ -1,5 +1,6 @@
 import DefaultSteps from '../default';
 import page from '../../pages/arhive/arhive';
+const assert = require('assert');
 
 class ArhiveSteps extends DefaultSteps {
     constructor() {
@@ -11,10 +12,8 @@ class ArhiveSteps extends DefaultSteps {
      * @returns {boolean}
      */
     findLetterById(id) {
-        const exist = this.page.isLetterExist(id);
-        if (!exist) {
-            throw Error('required letter does not exist');
-        }
+        const exist = this.page.isLetterExistById(id);
+        assert.ok(exist, 'Required letter does not exist');
     }
 }
 
