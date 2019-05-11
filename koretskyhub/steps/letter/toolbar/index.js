@@ -85,8 +85,8 @@ class LetterToolbarSteps extends DefaultSteps {
 		this.page.serviceHeaders();
 	}
 
-	moreDropdown(){
-		this.page.moreDropdown();
+	openMoreDropdown(){
+		this.page.openMoreDropdown();
 	}
 
 	toFolderDropdown(){
