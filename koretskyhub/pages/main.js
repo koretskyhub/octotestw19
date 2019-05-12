@@ -11,7 +11,7 @@ class MainPage extends DefaultPage {
 			container,
 			login: container + ' input[name="login"]',
 			password: container + ' input[name="password"]',
-			button: '[type="submit"]'
+			button: container + ' input[type="submit"]'
 		}
 	}
 
@@ -23,7 +23,7 @@ class MainPage extends DefaultPage {
 	}
 
 	submit() {
-		this.page.waitForVisible(this.locators.button);
+		// this.page.waitForVisible(this.locators.button);
 		this.page.click(this.locators.button)
 	}
 
