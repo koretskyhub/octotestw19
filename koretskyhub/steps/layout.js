@@ -46,7 +46,7 @@ class LayoutSteps extends DefaultSteps {
 		assert.equal(tabsDiff.length, 1, 'открыто неверное количество вкладок');
 		browser.switchTab(tabsDiff[0]);
 
-		browser.waitForVisible(this.locators.printBody);
+		browser.waitForVisible(this.page.locators.printBody);
 
 		browser.close()
 	}
