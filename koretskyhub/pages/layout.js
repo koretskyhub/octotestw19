@@ -14,8 +14,12 @@ class Layout extends DefaultPage {
 		const layoutSwitch = 	dropDownList + ' ' + ':nth-child(3)';
 		const paneCheckbox = 	layoutSwitch + ' ' + ' .b-checkbox';
 		const notifyBlock = '.notify-stack';
+		const printBody = '.print-body';
+		const popupPane = '.popup-pane';
 		return {
 			container,
+			popupPane,
+			printBody,
 			sideBar,
 			dropDown,
 			dropDownButton,
@@ -24,6 +28,10 @@ class Layout extends DefaultPage {
 			paneCheckbox,
 			notifyBlock,
 		}
+	}
+
+	getLastNotifyText(){
+		return $(this.locators.notifyBlock + ' ' + '.notify:last-child').getText();
 	}
 
 	toggleDropdownButton() {

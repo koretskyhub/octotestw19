@@ -1,5 +1,6 @@
 import DefaultSteps from '../default';
 import page from '../../pages/sidebar/folders';
+import assert from 'assert';
 
 class FoldersSteps extends DefaultSteps {
 	constructor() {
@@ -20,7 +21,7 @@ class FoldersSteps extends DefaultSteps {
 
 		const slug = folderSlug.get(folderName);
 		
-		if (slug == undefined) throw new Error('unknown folder');
+		assert.notEqual(slug, undefined, 'unknown folder');
 		
 		return `https://octavius.mail.ru/${slug}/`;
 	}

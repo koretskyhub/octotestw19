@@ -14,194 +14,86 @@ class LetterToolbar extends DefaultPage {
             container,
             moreDropdownContainer,
             moreListContainer,
-            back: container + ' ' + '[title="Вернуться"]',
-            
-            delete: container + ' ' + '[title="Удалить"]',
-            archive: container + ' ' + '[title="В архив"]',
-            spam: container + ' ' + '[title="Спам"]',
-            toFolder: container + ' ' + '[title="В папку"]',
-            more: container + ' ' + '[title="Ещё"]',
-            moreDropdown: {
-                readUnread: moreDropdownContainer + ' ' + '.list-item:nth-child(1)',
-                flag: moreDropdownContainer + ' ' + '.list-item:nth-child(2)',
-                createEvent: moreDropdownContainer + ' ' + '.list-item:nth-child(3)',
-                print: moreDropdownContainer + ' ' + '.list-item:nth-child(4)',
-                createFilter: moreDropdownContainer + ' ' + '.list-item:nth-child(5)',
-                translateLetter: moreDropdownContainer + ' ' + '.list-item:nth-child(6)',
-                findAllLetters: moreDropdownContainer + ' ' + '.list-item:nth-child(8)',
-                moreButton: moreDropdownContainer + ' ' + '.list-item:nth-child(10)',
-                moreList: {
-                    redirect: moreListContainer+ ' ' + '.list-item:nth-child(1)',
-                    redirectAsInclusion: moreListContainer + ' ' + '.list-item:nth-child(2)',
-                    serviceHeaders: moreListContainer + ' ' + '.list-item:nth-child(3)',
-                    download: moreListContainer + ' ' + '.list-item:nth-child(4)',
-                    openInNewTab: moreListContainer + ' ' + '.list-item:nth-child(5)',
-                },
-            },
-            response: container + ' ' + '[title="Ответить"]',
-            forward: container + ' ' + '[title="Переслать"]',
 
-            previous: container + ' ' + '[title="Предыдущее"]',
-            next: container + ' ' + '[title="Следующее"]',
-            search: '.search-panel-button',
+            "Вернуться": container + ' ' + '[title="Вернуться"]',
+            "Удалить": container + ' ' + '[title="Удалить"]',
+            "В архив": container + ' ' + '[title="В архив"]',
+            "Спам": container + ' ' + '[title="Спам"]',
+            "В папку": container + ' ' + '[title="В папку"]',
+            "Предыдущее": container + ' ' + '[title="Предыдущее"]',
+            "Следующее": container + ' ' + '[title="Следующее"]',
+            "Поиск": '.search-panel-button', 
+
+            moreDropdownButton: container + ' ' + '[title="Ещё"]',
+            moreDropdown: {
+                "Пометить прочитанным": moreDropdownContainer + ' ' + '.list-item:nth-child(1)',
+                "Пометить непрочитанным": moreDropdownContainer + ' ' + '.list-item:nth-child(1)',
+                "Пометить флажком": moreDropdownContainer + ' ' + '.list-item:nth-child(2)',
+                "Снять флажок": moreDropdownContainer + ' ' + '.list-item:nth-child(2)',
+                "Создать событие": moreDropdownContainer + ' ' + '.list-item:nth-child(3)',
+                "Распечатать": moreDropdownContainer + ' ' + '.list-item:nth-child(4)',
+                "Создать фильтр": moreDropdownContainer + ' ' + '.list-item:nth-child(5)',
+                "Перевести письмо": moreDropdownContainer + ' ' + '.list-item:nth-child(6)',
+                "Найти все письма": moreDropdownContainer + ' ' + '.list-item:nth-child(8)',
+                
+                moreListButton: moreDropdownContainer + ' ' + '.list-item:nth-child(10)',
+                moreList:  {
+                    "Перенаправить": moreListContainer+ ' ' + '.list-item:nth-child(1)',
+                    "Переслать как вложение": moreListContainer + ' ' + '.list-item:nth-child(2)',
+                    "Служебные заголовки": moreListContainer + ' ' + '.list-item:nth-child(3)',
+                    "Скачать на компьютер": moreListContainer + ' ' + '.list-item:nth-child(4)',
+                    "Открыть в новой вкладке": moreListContainer + ' ' + '.list-item:nth-child(5)',
+                    "Ответить": container + ' ' + '[title="Ответить"]',
+                    "Переслать": container + ' ' + '[title="Переслать"]',
+                }
+            }
         }
     }
 
-    clickComponent(){
+    clickButton(buttonName){
+        const locators = this.locators;
+        let target;
         
+        if (locators[buttonName] !== undefined) {
+            target = locators[buttonName];
+        } else {
+            if (locators.moreDropdown[buttonName] !== undefined) {
+                this.openMoreDropdown();
+                target = locators.moreDropdown[buttonName];
+            } else {
+                if (locators.moreDropdown.moreList[buttonName] !== undefined) {
+                    this.openMoreList();
+                    
+                    target = locators.moreDropdown.moreList[buttonName];
+                } else throw new Error('кнопки не существует');
+            } 
+        }
+        this.page.waitForVisible(target);
+        this.page.click(target);
     }
 
+    // getInvertedReadStatus(){
+    //     if ($('.letter-status2_unread').getAttribute('class').search('true') !== -1){
+	// 		return '.letter-status2_false';
+	// 	} else return '.letter-status2_true';
+    // }
+
+    // getInvertedFlagStatus(){
+    //     if ($('.letter-status2_flagged').getAttribute('class').search('true')){
+	// 		return '.letter-status2_false';
+	// 	} else return '.letter-status2_true';
+    // }
+
     openMoreDropdown () {
-        this.page.click(this.locators.more);
+        this.page.click(this.locators.moreDropdownButton);
         this.page.waitForVisible(this.locators.moreDropdownContainer);
     }
 
-    toFolderDropdown () {
-        this.page.click(this.locators.toFolder);
-    }
-    
-    markReadUnread () {
-        //открывается дропдаун
-        this.page.click(this.locators.more);
-        //отмечается прочитанным/непрочитанным
-		this.page.click(this.locators.moreDropdown.readUnread);
-    }
+    openMoreList () {
+        this.openMoreDropdown();
 
-    markFlagUnflag () {
-        //открывается дропдаун
-        this.page.click(this.locators.more);
-        //отмечается прочитанным/непрочитанным
-		this.page.click(this.locators.moreDropdown.flag);
-    }
-    
-    backToLetterFolder(){
-        this.page.waitForVisible(this.locators.back, 2000);
-        //переход к папке письма
-        this.page.click(this.locators.back);
-    }
-
-    toArchive(){
-        //перенос письма в архив
-        this.page.click(this.locators.archive);
-    }
-
-    openInNewTab() {
-        this.page.click(this.locators.more);
-
-        const moreButton = this.locators.moreDropdown.moreButton;
-        this.page.waitForVisible(moreButton);
-        this.page.click(moreButton);
-
-        const openTab = this.locators.moreDropdown.moreList.openInNewTab;
-        this.page.waitForVisible(openTab);
-        this.page.click(openTab);       
-    }
-
-    addEvent() {
-        this.page.click(this.locators.more);
-
-        const addEventButton = this.locators.moreDropdown.createEvent;
-        this.page.waitForVisible(addEventButton);
-        this.page.click(addEventButton);
-    }
-
-    print() {
-        this.page.click(this.locators.more);
-
-        const printButton = this.locators.moreDropdown.print;
-        this.page.waitForVisible(printButton);
-        this.page.click(printButton);
-    }
-
-    filter() {
-        this.page.click(this.locators.more);
-
-        const filterButton = this.locators.moreDropdown.createFilter;
-        this.page.waitForVisible(filterButton);
-        this.page.click(filterButton);
-    }
-
-    translate() {
-        this.page.click(this.locators.more);
-
-        const translateButton = this.locators.moreDropdown.translateLetter;
-        this.page.waitForVisible(translateButton);
-        this.page.click(translateButton);
-    }
-
-    find() {
-        this.page.click(this.locators.more);
-
-        const findButton = this.locators.moreDropdown.findAllLetters;
-        this.page.waitForVisible(findButton);
-        this.page.click(findButton);
-    }
-
-    redirect() {
-        this.page.click(this.locators.more);
-
-        const moreButton = this.locators.moreDropdown.moreButton;
-        this.page.waitForVisible(moreButton);
-        this.page.click(moreButton);
-
-        const redirectButton = this.locators.moreDropdown.moreList.redirect;
-        this.page.waitForVisible(redirectButton);
-        this.page.click(redirectButton);      
-    }
-
-    redirectAsInclusion() {
-        this.page.click(this.locators.more);
-
-        const moreButton = this.locators.moreDropdown.moreButton;
-        this.page.waitForVisible(moreButton);
-        this.page.click(moreButton);
-
-        const redirectButton = this.locators.moreDropdown.moreList.redirectAsInclusion;
-        this.page.waitForVisible(redirectButton);
-        this.page.click(redirectButton);      
-    }
-
-    serviceHeaders() {
-        this.page.click(this.locators.more);
-
-        const moreButton = this.locators.moreDropdown.moreButton;
-        this.page.waitForVisible(moreButton);
-        this.page.click(moreButton);
-
-        const getHeadersButton = this.locators.moreDropdown.moreList.serviceHeaders;
-        this.page.waitForVisible(getHeadersButton);
-        this.page.click(getHeadersButton);      
-    }
-
-    response(){
-        this.page.click(this.locators.response);
-    }
-
-    forward(){
-        this.page.click(this.locators.forward);
-    }
-
-    search() {
-        this.page.click(this.locators.search);
-    }
-
-    toSpam(){
-        const locator = this.locators.spam;
-        this.page.waitForVisible(locator);
-        this.page.click(locator);
-    }
-    
-    toNextLetter(){
-        this.page.click(this.locators.next);
-    }
-
-        
-    toPrevLetter(){
-        this.page.click(this.locators.previous);
-    }
-
-    deleteLetter(){
-        this.page.click(this.locators.delete);
+        this.page.click(this.locators.moreDropdown.moreListButton);
+        this.page.waitForVisible(this.locators.moreListContainer);
     }
 }
 
