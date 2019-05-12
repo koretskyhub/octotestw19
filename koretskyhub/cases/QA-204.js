@@ -134,19 +134,19 @@ describe('QA-204. Чтение письма действия с письмом �
 		letterToolbar.filter();
 	});
 
-	// it('Распечатать письмо', () => {
-	// 	const folderName = 'Входящие';
-	// 	folders.clickFolderByName(folderName);
+	it('Распечатать письмо', () => {
+		const folderName = 'Входящие';
+		folders.clickFolderByName(folderName);
 
-	// 	const [list, letterPos] = letters.getRandomLetter();
-	// 	letters.openByLetterFolderAndId(folderName, list[letterPos]);
+		const [list, letterPos] = letters.getRandomLetter();
+		letters.openByLetterFolderAndId(folderName, list[letterPos]);
 
-	// 	const tabsBefore = browser.getTabIds();
+		const tabsBefore = browser.getTabIds();
 
-	// 	letterToolbar.print();
+		letterToolbar.print();
 
-	// 	layout.checkPrintTab(tabsBefore);
-	// });
+		layout.checkPrintTab(tabsBefore);
+	});
 	
 	it('Создать событие', () => {
 		const folderName = 'Входящие';
