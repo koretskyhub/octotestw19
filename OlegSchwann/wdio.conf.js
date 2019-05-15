@@ -1,3 +1,5 @@
+const assert = require('assert');
+
 exports.config = {
 	// ==================
 	// Specify Test Files
@@ -151,8 +153,11 @@ exports.config = {
 	 * @param {Object} config wdio configuration object
 	 * @param {Array.<Object>} capabilities list of capabilities details
 	 */
-	// onPrepare: function (config, capabilities) {
-	// },
+	onPrepare: function (config, capabilities) {
+		const login = process.env['LOGIN'];
+		const password = process.env['PASSWORD'];
+		assert.ok(login && password, 'Env must have $LOGIN and $PASSWORD variables.');
+	},
 	/**
 	 * Gets executed just before initialising the webdriver session and test framework. It allows you
 	 * to manipulate configurations depending on the capability or spec.

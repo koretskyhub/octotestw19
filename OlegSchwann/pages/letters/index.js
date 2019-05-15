@@ -16,7 +16,10 @@ class LettersPage extends DefaultPage {
 			container,
 			firstLetter,
 			firstLetterFlag,
-			letterBody
+			letterBody,
+			letterWithId: (id) => {
+			    return `${container} a.llc[href*="${id}"]`;
+		    }
 		};
 	}
 
@@ -51,6 +54,14 @@ class LettersPage extends DefaultPage {
 		this.page.click(this.locators.firstLetterFlag);
 	}
 
+	/**
+	 * Проверяет, существует ли письмо c таким id на странице.
+	 * @returns {boolean}
+	 */
+	isLetterExistById(id) {
+		this.page.waitForVisible(this.locators.letterWithId(id), 10000);
+		return true
+	}
 }
 
 export default new LettersPage();

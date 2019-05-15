@@ -1,5 +1,5 @@
 import DefaultSteps from '../default';
-import page from '../../pages/arhive/arhive';
+import page from '../../pages/letters/';
 const assert = require('assert');
 
 class ArhiveSteps extends DefaultSteps {
