@@ -1,5 +1,8 @@
 import DefaultSteps from '../../default';
 import toolbar from '../../../pages/letter/toolbar';
+import modals from '../../../pages/letter/modals'; 
+import searchpanel from '../../../pages/letter/toolbar/searchpanel';
+import letter from '../../../pages/letter'
 
 class LetterToolbarSteps extends DefaultSteps {
 	constructor() {
@@ -7,25 +10,26 @@ class LetterToolbarSteps extends DefaultSteps {
 	}
 
 	markReadUnread () {
-		let expectedClass;
+		let expectedClass = letter.getInvertedReadStatus()
 
-		if ($('.letter-status2_unread').getAttribute('class').search('true') !== -1){
-			expectedClass = '.letter-status2_false';
-		} else expectedClass = '.letter-status2_true';
-
-		this.page.markReadUnread();
+		this.page.clickButton("Пометить прочитанным");
 
 		browser.waitForVisible(expectedClass);
 	}
 
+	translate() {
+		this.page.clickButton("Перевести письмо");
+		const translator = letter.locators.translator;
+
+		browser.waitForVisible(translator);
+
+		browser.waitUntil(() => browser.isEnabled(translator));
+	}
+
 	markFlagUnflag () {
-		let expectedClass;
+		let expectedClass = letter.getInvertedFlagStatus();
 
-		if ($('.letter-status2_flagged').getAttribute('class').search('true')){
-			expectedClass = '.letter-status2_false';
-		} else expectedClass = '.letter-status2_true';
-
-		this.page.markFlagUnflag();
+		this.page.clickButton("Пометить флажком");
 
 		browser.waitForVisible(expectedClass);
 	}
@@ -34,88 +38,85 @@ class LetterToolbarSteps extends DefaultSteps {
 		let folderUrl = browser.getUrl().slice(0, -1);
 		folderUrl = folderUrl.slice(0, folderUrl.lastIndexOf('/'));
 		
-		this.page.backToLetterFolder();
+		this.page.clickButton("Вернуться");
 		this.page.waitForUrl(folderUrl);
 	}
 
 	openInNewTab(){
-		this.page.openInNewTab();
+		this.page.clickButton("Открыть в новой вкладке");
 	}
 
 	addEvent(){
-		this.page.addEvent()
+		this.page.clickButton("Создать событие");
 	}
 
 	print() {
-		this.page.print();
+		this.page.clickButton("Распечатать");
 	}
 
 	filter() {
-		this.page.filter();
-	}
-
-	translate() {
-		this.page.translate();
+		this.page.clickButton("Создать фильтр");
 	}
 
 	find() {
-		this.page.find();
+		this.page.clickButton("Найти все письма");
 	}
 
 	redirect() {
-		this.page.redirect();
-	}
-
-	response() {
-		this.page.response();
-	}
-
-	forward(){
-		this.page.forward();
+		this.page.clickButton("Перенаправить");
 	}
 	
-	search() {
-			this.page.search();
-	}
-	redirectAsInclusion() {
-		this.page.redirectAsInclusion();
-	}
-
 	serviceHeaders() {
-		this.page.serviceHeaders();
+		this.page.clickButton("Служебные заголовки");
 	}
 
-	moreDropdown(){
-		this.page.moreDropdown();
+	openMoreDropdown(){
+		this.page.openMoreDropdown();
 	}
 
 	toFolderDropdown(){
-		this.page.toFolderDropdown()
-	};
+		this.page.clickButton("В папку");
+	}
 
 	toArchive(expectedUrl){
-		this.page.toArchive();
+		this.page.clickButton("В архив");
 		this.page.waitForUrl(expectedUrl);
 	}
 
 	toSpam(expectedUrl){
-		this.page.toSpam();
+		this.page.clickButton("Спам");
 		this.page.waitForUrl(expectedUrl);
 	}
 
 	toNextLetter(nextLetterUrl){
-		this.page.toNextLetter();
+		this.page.clickButton("Следующее");
 		this.page.waitForUrl(nextLetterUrl);
 	}
 
 	toPrevLetter(prevLetterUrl){
-		this.page.toPrevLetter();
+		this.page.clickButton("Предыдущее");
 		this.page.waitForUrl(prevLetterUrl);
 	}
 
 	deleteLetter(expectedUrl){
-		this.page.deleteLetter();
+		this.page.clickButton("Удалить");
 		this.page.waitForUrl(expectedUrl)
+	}
+
+	response() {
+		this.page.clickButton("Ответить");
+	}
+
+	forward(){
+		this.page.clickButton("Переслать");
+	}
+
+	redirectAsInclusion() {
+		this.page.clickButton("Переслать как вложение");
+	}
+
+	search(){
+		searchpanel.search();
 	}
 
 }

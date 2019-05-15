@@ -1,5 +1,6 @@
 import DefaultSteps from '../default';
 import page from '../../pages/sidebar/folders';
+import assert from 'assert';
 
 class FoldersSteps extends DefaultSteps {
 	constructor() {
@@ -7,37 +8,22 @@ class FoldersSteps extends DefaultSteps {
 	}
 
 	folderUrl(folderName){
-		let folder;
-		switch (folderName) {
-			case 'Входящие':
-				folder = 'inbox';
-				break;
-			case 'Социальные сети':
-				folder = 'social'
-				break;
-			case 'Рассылки':
-				folder = 'newsletters';
-				break;
-			case 'Отправленные':
-				folder = 'sent';
-				break;
-			case 'Черновики':
-				folder = 'drafts';
-				break;
-			case 'Архив':
-				folder = 'archive';
-				break;
-			case 'Спам':
-				folder = 'spam';
-				break;
-			case 'Корзина':
-				folder = 'trash';
-				break;
+		const folderSlug = new Map([
+			['Входящие', 'inbox'],
+			['Социальные сети', 'social'], 
+			['Рассылки', 'newsletters'], 
+			['Отправленные', 'sent'], 
+			['Черновики', 'drafts'], 
+			['Архив', 'archive'], 
+			['Спам', 'spam'], 
+			['Корзина', 'trash'], 
+		])
+
+		const slug = folderSlug.get(folderName);
 		
-			default:
-				throw new Error('unknown folder');
-		}
-		return `https://octavius.mail.ru/${folder}/`;
+		assert.notEqual(slug, undefined, 'unknown folder');
+		
+		return `https://octavius.mail.ru/${slug}/`;
 	}
 
 	clickFolderByName(folderName) {

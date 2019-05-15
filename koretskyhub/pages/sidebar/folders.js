@@ -10,37 +10,22 @@ class FoldersPage extends DefaultPage {
 		return {
 			container,
 			folderByName: (folderName) => {
-				let folder;
-				switch (folderName) {
-					case 'Входящие':
-						folder = ':nth-child(1).nav__item';
-						break;
-					case 'Социальные сети':
-						folder = ':nth-child(2).nav__item';
-						break;
-					case 'Рассылки':
-						folder = ':nth-child(3).nav__item';
-						break;
-					case 'Отправленные':
-						folder = ':nth-child(4).nav__item';
-						break;
-					case 'Черновики':
-						folder = ':nth-child(5).nav__item';
-						break;
-					case 'Архив':
-						folder = ':nth-child(6).nav__item';
-						break;
-					case 'Спам':
-						folder = ':nth-child(7).nav__item';
-						break;
-					case 'Корзина':
-						folder = ':nth-child(8).nav__item';
-						break;
+				const folderPosition = new Map([
+					['Входящие', 1],
+					['Социальные сети', 2], 
+					['Рассылки', 3], 
+					['Отправленные', 4], 
+					['Черновики', 5], 
+					['Архив', 6], 
+					['Спам', 7], 
+					['Корзина', 8], 
+				])
 				
-					default:
-						throw new Error('unknown folder');
-				}
-				return container + ' ' + folder;
+				const pos = folderPosition.get(folderName);
+
+				if (pos === undefined) throw new Error('unknown folder');
+				
+				return container + ' ' + `:nth-child(${pos}).nav__item`;
 			}
 		}
 	}
