@@ -1,6 +1,5 @@
 import DefaultSteps from '../../default';
 import toolbar from '../../../pages/letter/toolbar';
-import modals from '../../../pages/letter/modals'; 
 import searchpanel from '../../../pages/letter/toolbar/searchpanel';
 import letter from '../../../pages/letter'
 
@@ -37,7 +36,7 @@ class LetterToolbarSteps extends DefaultSteps {
 	backToLetterFolder(){
 		let folderUrl = browser.getUrl().slice(0, -1);
 		folderUrl = folderUrl.slice(0, folderUrl.lastIndexOf('/'));
-		
+
 		this.page.clickButton("Вернуться");
 		this.page.waitForUrl(folderUrl);
 	}
@@ -65,7 +64,7 @@ class LetterToolbarSteps extends DefaultSteps {
 	redirect() {
 		this.page.clickButton("Перенаправить");
 	}
-	
+
 	serviceHeaders() {
 		this.page.clickButton("Служебные заголовки");
 	}
