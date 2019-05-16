@@ -12,7 +12,6 @@ describe('test id', () => {
         // TODO: вот это не должно быть в самом тесте. Это должно быть ДО выполнения теста.
         const login = process.env.LOGIN;
         const password = process.env.PASSWORD;
-        assert.ok(login && password, 'Env must have $LOGIN and $PASSWORD variables.');
 
         main.open('https://mail.ru');
 
