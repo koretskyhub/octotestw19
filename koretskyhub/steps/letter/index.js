@@ -15,7 +15,7 @@ class LettersSteps extends DefaultSteps {
 		this.page.getInvertedReadStatus();
 	}
 
-    getInvertedFlagStatus(){
+	getInvertedFlagStatus(){
 		this.page.getInvertedFlagStatus();
 	}
 		

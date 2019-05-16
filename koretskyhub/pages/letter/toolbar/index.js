@@ -72,18 +72,6 @@ class LetterToolbar extends DefaultPage {
         this.page.click(target);
     }
 
-    // getInvertedReadStatus(){
-    //     if ($('.letter-status2_unread').getAttribute('class').search('true') !== -1){
-	// 		return '.letter-status2_false';
-	// 	} else return '.letter-status2_true';
-    // }
-
-    // getInvertedFlagStatus(){
-    //     if ($('.letter-status2_flagged').getAttribute('class').search('true')){
-	// 		return '.letter-status2_false';
-	// 	} else return '.letter-status2_true';
-    // }
-
     openMoreDropdown () {
         this.page.click(this.locators.moreDropdownButton);
         this.page.waitForVisible(this.locators.moreDropdownContainer);

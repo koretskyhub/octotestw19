@@ -122,4 +122,3 @@ class LetterToolbarSteps extends DefaultSteps {
 }
 
 export default new LetterToolbarSteps();
-

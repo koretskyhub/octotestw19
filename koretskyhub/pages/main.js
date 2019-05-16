@@ -23,7 +23,6 @@ class MainPage extends DefaultPage {
 	}
 
 	submit() {
-		// this.page.waitForVisible(this.locators.button);
 		this.page.click(this.locators.button)
 	}
 

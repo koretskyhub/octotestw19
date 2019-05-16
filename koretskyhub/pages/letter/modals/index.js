@@ -47,7 +47,6 @@ class Modals extends DefaultPage {
     checkRedirect(){
         browser.waitForVisible(this.locators.redirectModal);
     }
-
 }
 
 export default new Modals();
